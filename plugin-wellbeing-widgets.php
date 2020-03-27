@@ -44,20 +44,22 @@ echo $args['before_title'] . $title . $args['after_title'];
 // This is where you run the code and display the output
 echo __( '', 'jr_wl_widget_domain' );
 
-// Initialise global api key
-global $wl_google_api_key;
-$wl_api_main_address = get_field("main_address");
+if ( is_singular( 'activities' ) ){
+	
+	// Initialise global api key
+	global $wl_google_api_key;
+	$wl_api_main_address = get_field("main_address");
 
-// Display sidebar map
-echo "
-<iframe
-  width=\"100%\"
-  height=\"300\"
-  frameborder=\"0\" style=\"border:0\"
-  src=\"https://www.google.com/maps/embed/v1/place?key=" . $wl_google_api_key . "&q=" . urlencode($wl_api_main_address) . "\" allowfullscreen>
-</iframe>";
+	// Display sidebar map
+	echo "
+	<iframe
+	  width=\"100%\"
+	  height=\"300\"
+	  frameborder=\"0\" style=\"border:0\"
+	  src=\"https://www.google.com/maps/embed/v1/place?key=" . $wl_google_api_key . "&q=" . urlencode($wl_api_main_address) . "\" allowfullscreen>
+	</iframe>";
 
-
+}
 
 echo $args['after_widget'];
 }
