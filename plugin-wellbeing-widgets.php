@@ -34,18 +34,18 @@ array( 'description' => __( 'Beta widget for displaying profile maps', 'jr_wl_wi
 // Creating widget front-end
  
 public function widget( $args, $instance ) {
-$title = apply_filters( 'widget_title', $instance['title'] );
- 
-// before and after widget arguments are defined by themes
-echo $args['before_widget'];
-if ( ! empty( $title ) )
-echo $args['before_title'] . $title . $args['after_title'];
- 
-// This is where you run the code and display the output
-echo __( '', 'jr_wl_widget_domain' );
 
-if ( is_singular( 'activities' ) ){
-	
+	if ( is_singular( 'activities' ) ){
+	$title = apply_filters( 'widget_title', $instance['title'] );
+	 
+	// before and after widget arguments are defined by themes
+	echo $args['before_widget'];
+	if ( ! empty( $title ) )
+	echo $args['before_title'] . $title . $args['after_title'];
+	 
+	// This is where you run the code and display the output
+	echo __( '', 'jr_wl_widget_domain' );
+
 	// Initialise global api key
 	global $wl_google_api_key;
 	$wl_api_main_address = get_field("main_address");
@@ -59,9 +59,10 @@ if ( is_singular( 'activities' ) ){
 	  src=\"https://www.google.com/maps/embed/v1/place?key=" . $wl_google_api_key . "&q=" . urlencode($wl_api_main_address) . "\" allowfullscreen>
 	</iframe>";
 
-}
 
-echo $args['after_widget'];
+	echo $args['after_widget'];
+	
+	}
 }
          
 // Widget Backend 
